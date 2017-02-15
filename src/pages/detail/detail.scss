@@ -1,0 +1,40 @@
+page-detail {
+  #puzzleImageSvg2 {
+    width: 100%;
+    border-radius: 5px;
+    border: thin solid black;
+    background-color: black;
+  }
+  #puzzleImageSvg2>g>image {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  #puzzleImageSvg2>g>image:hover {
+    opacity: 0.75;
+  }
+  #puzzleImageSvg2>g>text {
+    cursor: pointer;
+    font-weight: bold;
+    text-anchor: middle;
+    alignment-baseline: middle;
+    fill: white;
+    opacity: 0.85;
+  }
+  #puzzleImageSvg2>g>text:hover {
+    fill: yellow;
+  }
+  #puzzleImageSvg {
+    width: 100%;
+    border-radius: 5px;
+    border: thin solid black;
+    background-color: black;
+  }
+
+  ion-grid {
+    padding: 0px;
+  }
+
+  ion-col {
+    padding: 0px;
+  }
+}

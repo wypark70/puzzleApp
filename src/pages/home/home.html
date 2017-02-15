@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      사진 선택
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <button ion-button color="primary" full item-right icon-left (click)="accessGallery()">
+          <ion-icon name="photos"></ion-icon>
+          겔러리
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button ion-button color="primary" full item-right icon-left (click)="getPicture()">
+          <ion-icon name="camera"></ion-icon>
+          사진찍기
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card *ngFor="let imageItem of imageList">
+    <img [src]="imageItem.src" (click)='goDetailPage(imageItem)' />
+    <div class="card-title">{{imageItem.title}}</div>
+    <div class="card-subtitle">{{imageItem.subTitle}}</div>
+  </ion-card>
+</ion-content>
