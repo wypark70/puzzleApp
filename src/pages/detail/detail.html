@@ -23,7 +23,7 @@
       <ion-col width-33>
         <ion-item>
           <ion-label>행</ion-label>
-          <ion-select [(ngModel)]="colCnt" cancelText="취소" okText="확인" (ngModelChange)="colCnt=$event">
+          <ion-select [(ngModel)]="colCnt" cancelText="취소" okText="확인" (ngModelChange)="onChange($event)">
             <ion-option *ngFor="let cnt of colCntArr" [value]="cnt">{{cnt}}</ion-option>
           </ion-select>
         </ion-item>
@@ -31,7 +31,7 @@
       <ion-col width-33>
         <ion-item>
           <ion-label>열</ion-label>
-          <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인" (ngModelChange)="colCnt=$event">
+          <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인" (ngModelChange)="onChange($event)">
             <ion-option *ngFor="let cnt of rowCntArr" [value]="cnt">{{cnt}}</ion-option>
           </ion-select>
         </ion-item>
