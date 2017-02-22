@@ -23,7 +23,7 @@
       <ion-col width-33>
         <ion-item>
           <ion-label>행</ion-label>
-          <ion-select [(ngModel)]="colCnt">
+          <ion-select [(ngModel)]="colCnt" cancelText="취소" okText="확인" (ngModelChange)="colCnt=$event">
             <ion-option *ngFor="let cnt of colCntArr" [value]="cnt">{{cnt}}</ion-option>
           </ion-select>
         </ion-item>
@@ -31,26 +31,24 @@
       <ion-col width-33>
         <ion-item>
           <ion-label>열</ion-label>
-          <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인">
+          <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인" (ngModelChange)="colCnt=$event">
             <ion-option *ngFor="let cnt of rowCntArr" [value]="cnt">{{cnt}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col width-33>
         <button ion-button full item-right icon-left (click)="initGame()">
-          <ion-icon name="apps"></ion-icon>
-          적용
-          </button>
+        <ion-icon name="apps"></ion-icon>적용</button>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!--
   <svg id="puzzleImageSvg" [attr.viewBox]="viewBox">
     <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.x)+','+(item.y * dy + item.y) + ')'"
       (click)="onclickImage(item)">
       <image [attr.width]="dx" [attr.height]="dy" [attr.href]="item.href"></image>
       </g>
   </svg>
-  <!--
   <svg id="puzzleImageSvg" [attr.viewBox]="viewBox2">
     <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.y * dx * colCnt + item.x + (item.y * colCnt)) + ', 0)'">
       <image [attr.width]="dx" [attr.height]="dy" [attr.href]="item.href"></image>
@@ -61,7 +59,7 @@
     <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.x)+','+(item.y * dy + item.y) + ')'"
       (click)="onclickImage(item)">
       <image [attr.width]="dx" [attr.height]="dy" [attr.href]="item.href"></image>
-      <text *ngIf="!((item.idx + 1) == (colCnt * rowCnt))" [attr.dx]="dx / 2" [attr.dy]="dy / 2" [attr.font-size]="dy / 3">{{item.idx + 1}}</text>
+      <text *ngIf="isShowNumber && !((item.idx + 1) == (colCnt * rowCnt))" [attr.dx]="dx / 2" [attr.dy]="dy / 2" [attr.font-size]="dy / 3">{{item.idx + 1}}</text>
       </g>
   </svg>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, OnChanges } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { ImageItem } from '../';
@@ -13,15 +13,13 @@ interface Item {
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'page-detail',
-  templateUrl: 'detail.html'
+  templateUrl: 'detail.html',
+  inputs: ['colCnt', 'rowCnt']
 })
 
-export class DetailPage implements OnInit {
-  colCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
-  rowCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
-  private randomMoveType = 2;
-  private colCnt: number;
-  private rowCnt: number;
+export class DetailPage implements OnInit, OnChanges {
+  @Input() colCnt: number;
+  @Input() rowCnt: number;
   private imageItem: ImageItem;
   private puzzleImageList: Array<Item>;
   private dx: number;
@@ -30,6 +28,10 @@ export class DetailPage implements OnInit {
   private viewBox2: string;
   private timerId;
   private blankItem: Item;
+  private colCntArr: Array<number>;
+  private rowCntArr: Array<number>;
+  private randomMoveType: number;
+  @Input() isShowNumber: boolean;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -45,12 +47,25 @@ export class DetailPage implements OnInit {
     };
     self.colCnt = 5;
     self.rowCnt = 5;
+    self.colCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
+    self.rowCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
+    self.randomMoveType = 2;
+    self.isShowNumber = true;
     self.startGame();
     console.log('ngOnInit DetailPage');
   }
 
+  ngOnChanges(changes) {
+    console.log('ngOnChanges: ', changes);
+  }
+
+  onChange(value) {
+    console.log('ngOnChanges: ', value);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
+    this.startGame();
   }
 
   startGame() {
