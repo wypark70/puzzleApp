@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
 import { ImageItem } from '../';
-import { OptionPage } from '../option/option'
 
 interface Item {
   href: string;
