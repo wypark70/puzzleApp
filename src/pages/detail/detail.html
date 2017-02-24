@@ -25,7 +25,7 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col width-33>
+            <ion-col width-50>
                 <ion-item>
                     <ion-label>행</ion-label>
                     <ion-select [(ngModel)]="colCnt" cancelText="취소" okText="확인" (ionChange)="initGame()">
@@ -33,17 +33,13 @@
                     </ion-select>
                 </ion-item>
             </ion-col>
-            <ion-col width-33>
+            <ion-col width-50>
                 <ion-item>
                     <ion-label>열</ion-label>
                     <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인" (ionChange)="initGame()">
                         <ion-option *ngFor="let cnt of rowCntArr" [value]="cnt">{{cnt}}</ion-option>
                     </ion-select>
                 </ion-item>
-            </ion-col>
-            <ion-col width-33>
-                <button ion-button full item-right icon-left (click)="initGame()">
-                <ion-icon name="apps"></ion-icon>적용</button>
             </ion-col>
         </ion-row>
     </ion-grid>
