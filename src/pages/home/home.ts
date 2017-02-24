@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 
 import { ImageItem } from '../';
@@ -15,7 +14,7 @@ export class HomePage implements OnInit {
   private imageList: Array<ImageItem>;
   private selectedImageItem: ImageItem;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController) {
   }
 
   ngOnInit() {
@@ -57,12 +56,4 @@ export class HomePage implements OnInit {
     this.navCtrl.push(DetailPage, imageItem);
   }
 
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: '알림',
-      subTitle: '안녕하세요. ionic AlertController 입니다.',
-      buttons: ['확인']
-    });
-    alert.present();
-  }
 }

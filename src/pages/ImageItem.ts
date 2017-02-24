@@ -1,4 +1,3 @@
-
 interface ImageItem {
   src: string;
   title: string;
