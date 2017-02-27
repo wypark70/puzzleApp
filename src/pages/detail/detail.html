@@ -1,51 +1,52 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>{{imageItem.title}}</ion-title>
-        <!--
-        <ion-buttons end>
-            <button ion-button icon-only (click)="presentPopover($event)">
-                <ion-icon name="more"></ion-icon>
-            </button>
-        </ion-buttons>
-        -->
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{imageItem.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toogleOption($event)">
+          <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-list *ngIf="isShowOption">
+    <ion-list-header>
+      설정
+    </ion-list-header>
+    <ion-item>
+      <ion-label>번호 보기</ion-label>
+      <ion-toggle [(ngModel)]="isShowNumber"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>가로 칸수</ion-label>
+      <ion-select [(ngModel)]="colCnt" okText="확인" cancelText="취소" (ionChange)="initGame()">
+        <ion-option *ngFor="let colCnt of colCntArr" [value]="colCnt">{{colCnt}}칸</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>세로 칸수</ion-label>
+      <ion-select [(ngModel)]="rowCnt" okText="확인" cancelText="취소" (ionChange)="initGame()">
+        <ion-option *ngFor="let rowCnt of rowCntArr" [value]="rowCnt">{{rowCnt}}칸</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-header>
 <ion-content padding>
-    <ion-grid>
-        <ion-row>
-            <ion-col width-50>
-                <button ion-button full item-right icon-left (click)="startRandomMove()">
-                    <ion-icon name="play"></ion-icon>
-                    Start
-                </button>
-            </ion-col>
-            <ion-col width-50>
-                <button ion-button full item-right icon-left (click)="stopRandomMove()">
-                    <ion-icon name="pause"></ion-icon>
-                    Stop
-                </button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col width-50>
-                <ion-item>
-                    <ion-label>행</ion-label>
-                    <ion-select [(ngModel)]="colCnt" cancelText="취소" okText="확인" (ionChange)="initGame()">
-                        <ion-option *ngFor="let cnt of colCntArr" [value]="cnt">{{cnt}}</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-col>
-            <ion-col width-50>
-                <ion-item>
-                    <ion-label>열</ion-label>
-                    <ion-select [(ngModel)]="rowCnt" cancelText="취소" okText="확인" (ionChange)="initGame()">
-                        <ion-option *ngFor="let cnt of rowCntArr" [value]="cnt">{{cnt}}</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <!--
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <button ion-button full item-right icon-left (click)="startRandomMove()">
+          <ion-icon name="play"></ion-icon>
+          Start
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button ion-button full item-right icon-left (click)="stopRandomMove()">
+          <ion-icon name="pause"></ion-icon>
+          Stop
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--
     <svg id="puzzleImageSvg" [attr.viewBox]="viewBox">
         <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.x)+','+(item.y * dy + item.y) + ')'"
             (click)="onclickImage(item)">
@@ -58,11 +59,10 @@
         </g>
     </svg>
     -->
-    <svg id="puzzleImageSvg2" [attr.viewBox]="viewBox">
-        <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.x)+','+(item.y * dy + item.y) + ')'"
-            (click)="onclickImage(item)">
-            <image [attr.width]="dx" [attr.height]="dy" [attr.href]="item.href"></image>
-            <text *ngIf="isShowNumber && !((item.idx + 1) == (colCnt * rowCnt))" [attr.dx]="dx / 2" [attr.dy]="dy / 2" [attr.font-size]="dy / 3">{{item.idx + 1}}</text>
-        </g>
-    </svg>
+  <svg id="puzzleImageSvg2" [attr.viewBox]="viewBox">
+    <g *ngFor="let item of puzzleImageList;" [attr.transform]="'translate(' + (item.x * dx + item.x)+','+(item.y * dy + item.y) + ')'" (click)="onclickImage(item)">
+      <image [attr.width]="dx" [attr.height]="dy" [attr.href]="item.href"></image>
+      <text *ngIf="isShowNumber && !((item.idx + 1) == (colCnt * rowCnt))" [attr.dx]="dx / 2" [attr.dy]="dy / 2" [attr.font-size]="fontSize">{{item.idx + 1}}</text>
+    </g>
+  </svg>
 </ion-content>

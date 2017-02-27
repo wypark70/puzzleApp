@@ -30,7 +30,9 @@ export class DetailPage implements OnInit {
   private colCntArr: Array<number>;
   private rowCntArr: Array<number>;
   private randomMoveType: number;
+  private fontSize: number;
   private isShowNumber: boolean;
+  private isShowOption: boolean;
 
 
   constructor(public navParams: NavParams) {
@@ -46,16 +48,26 @@ export class DetailPage implements OnInit {
     };
     self.colCnt = 5;
     self.rowCnt = 5;
-    self.colCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
-    self.rowCntArr = [2, 3, 4, 5, 6, 7, 8, 9];
     self.randomMoveType = 2;
+    self.fontSize = 18;
     self.isShowNumber = true;
+    self.isShowOption = false;
+    self.colCntArr = [];
+    self.rowCntArr = [];
+    for (let i = 2; i < 12; i ++) {
+      self.colCntArr.push(i);
+      self.rowCntArr.push(i);
+    }
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
     this.startGame();
+  }
+
+  toogleOption() {
+    this.isShowOption = !this.isShowOption;
   }
 
   startGame() {
@@ -98,6 +110,7 @@ export class DetailPage implements OnInit {
       }
       canvas.remove();
       self.blankItem = self.puzzleImageList[self.puzzleImageList.length - 1];
+      self.fontSize = Math.min(self.dx, self.dy) / 3;
       //self.startRandomMove();
     }
     /*

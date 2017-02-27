@@ -22,8 +22,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card *ngFor="let imageItem of imageList">
-    <img [src]="imageItem.src" (click)='goDetailPage(imageItem)' />
+  <ion-card *ngFor="let imageItem of imageList" (click)="goDetailPage(imageItem)">
+    <img [src]="imageItem.src" />
     <div class="card-title">{{imageItem.title}}</div>
     <div class="card-subtitle">{{imageItem.subTitle}}</div>
   </ion-card>
